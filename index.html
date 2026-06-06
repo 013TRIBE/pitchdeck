@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>013TRIBE — Pitch Deck 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #ffffff;
+    --parchment: #1a1208;
+    --magenta: #c0185a;
+    --pink: #b8124f;
+    --brown: #d9c9b8;
+    --warm-gray: #6b5a4e;
+    --light: #2e2015;
+    --bg: #ffffff;
+    --rule: rgba(192,24,90,0.2);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--parchment);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.9;
+    overflow-x: hidden;
+  }
+
+  /* ── SLIDE WRAPPER ── */
+  .deck {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .slide {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 10vw;
+    border-bottom: 1px solid var(--brown);
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+    position: relative;
+  }
+  .slide.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── SLIDE NUMBERS ── */
+  .slide-num {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 5px;
+    color: var(--magenta);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    display: block;
+  }
+
+  /* ── COVER SLIDE ── */
+  .slide-cover {
+    align-items: center;
+    text-align: center;
+    background: #fff;
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+  .sun-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  .sun { width: 100px; height: 100px; }
+  .sun svg { width: 100%; height: 100%; }
+
+  .eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 6px;
+    color: var(--magenta);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: block;
+  }
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(32px, 6vw, 64px);
+    font-weight: 600;
+    color: var(--parchment);
+    letter-spacing: 3px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .tagline-cover {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-style: italic;
+    color: var(--pink);
+    margin-bottom: 48px;
+    letter-spacing: 1px;
+  }
+  .author-block {
+    display: inline-block;
+    border-top: 1px solid var(--brown);
+    border-bottom: 1px solid var(--brown);
+    padding: 14px 36px;
+  }
+  .author {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    letter-spacing: 3px;
+    color: var(--light);
+  }
+  .location {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--warm-gray);
+    margin-top: 4px;
+  }
+
+  /* ── CONTENT SLIDES ── */
+  .slide-header {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(13px, 2vw, 16px);
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: var(--magenta);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+  }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 4vw, 44px);
+    font-weight: 300;
+    color: var(--parchment);
+    margin-bottom: 36px;
+    line-height: 1.3;
+  }
+  h2 em { font-style: italic; color: var(--pink); }
+
+  /* ── BULLET LIST ── */
+  .points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+  }
+  .points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--light);
+    line-height: 1.7;
+  }
+  .points li::before {
+    content: '—';
+    color: var(--magenta);
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-size: 18px;
+  }
+  .points li strong { color: var(--parchment); font-weight: 500; }
+
+  /* ── CALLOUT ── */
+  .callout {
+    border-left: 3px solid var(--magenta);
+    padding: 20px 28px;
+    margin: 36px 0 0;
+    background: rgba(192,24,90,0.04);
+    max-width: 700px;
+  }
+  .callout p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(17px, 2.2vw, 22px);
+    font-style: italic;
+    color: var(--parchment);
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  /* ── COMPARISON TABLE ── */
+  .comparison {
+    margin-top: 36px;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 780px;
+  }
+  .comparison th {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--magenta);
+    text-transform: uppercase;
+    padding: 12px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--brown);
+  }
+  .comparison td {
+    padding: 13px 20px;
+    font-size: 15px;
+    color: var(--light);
+    border-bottom: 1px solid rgba(217,201,184,0.5);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .comparison td:first-child {
+    color: var(--warm-gray);
+    font-size: 13px;
+    letter-spacing: 1px;
+    width: 28%;
+  }
+
+  /* ── TECH ITEMS ── */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 36px;
+    max-width: 800px;
+  }
+  .tech-item {
+    padding: 20px 24px;
+    border-left: 2px solid var(--brown);
+    background: rgba(217,201,184,0.08);
+  }
+  .tech-item strong {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--pink);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .tech-item p {
+    margin: 0;
+    font-size: 15px;
+    color: var(--light);
+    line-height: 1.6;
+  }
+
+  /* ── TEAM BLOCK ── */
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 36px;
+    max-width: 780px;
+  }
+  .team-member {
+    padding: 24px 28px;
+    border: 1px solid var(--brown);
+  }
+  .team-member .name {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--parchment);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .team-member .role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--pink);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .team-member p {
+    font-size: 15px;
+    color: var(--light);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── ASK SLIDE ── */
+  .ask-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 28px;
+    margin-top: 40px;
+    max-width: 800px;
+  }
+  .ask-item {
+    text-align: center;
+    padding: 32px 20px;
+    border: 1px solid var(--rule);
+    background: rgba(192,24,90,0.03);
+  }
+  .ask-item .ask-label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--magenta);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .ask-item p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--light);
+    line-height: 1.6;
+    margin: 0;
+    font-style: italic;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 36px 0;
+    opacity: 0.35;
+    max-width: 200px;
+  }
+  .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--brown);
+  }
+  .divider-dot {
+    width: 5px; height: 5px;
+    background: var(--magenta);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── SLIDE BG ACCENTS ── */
+  .slide:nth-child(even) { background: #fdfaf7; }
+  .slide:nth-child(odd)  { background: #ffffff; }
+  .slide-cover           { background: #ffffff; }
+
+  /* ── NAV DOTS ── */
+  .nav-dots {
+    position: fixed;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+  }
+  .nav-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--brown);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    border: none;
+    padding: 0;
+  }
+  .nav-dot.active { background: var(--magenta); transform: scale(1.5); }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 48px 40px;
+    border-top: 1px solid var(--brown);
+    background: #fdfaf7;
+  }
+  .footer-tagline {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 6px;
+    color: var(--parchment);
+    margin-bottom: 12px;
+  }
+  .contact {
+    font-size: 14px;
+    color: var(--magenta);
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
+  .contact:hover { color: var(--pink); }
+
+  @media (max-width: 700px) {
+    .slide { padding: 60px 6vw; }
+    .tech-grid, .team-grid, .ask-grid { grid-template-columns: 1fr; }
+    .nav-dots { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV DOTS -->
+<nav class="nav-dots" id="navDots"></nav>
+
+<div class="deck">
+
+  <!-- SLIDE 1 — COVER -->
+  <section class="slide slide-cover" data-slide="1">
+    <div class="sun-container">
+      <div class="sun">
+        <svg id="sunsvg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="core" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#f5c0d0"/>
+              <stop offset="40%" stop-color="#e8357a"/>
+              <stop offset="100%" stop-color="#c0185a"/>
+            </radialGradient>
+          </defs>
+          <g id="sungroup" transform="translate(100,100)">
+            <circle r="38" fill="url(#core)" opacity="0.9"/>
+            <circle r="28" fill="#e8357a" opacity="0.7"/>
+            <circle r="18" fill="#f5c0d0" opacity="0.5"/>
+            <circle r="8" fill="#fff5f8" opacity="0.8"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <span class="eyebrow">013TRIBE · Pitch Deck · 2026</span>
+    <h1>013TRIBE</h1>
+    <div class="tagline-cover">Grow Food. Earn Tokens. Create Reality.</div>
+    <div class="author-block">
+      <div class="author">Sophia Abramiשvili</div>
+      <div class="location">Tbilisi, Georgia · 2026</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 2 — PROBLEM -->
+  <section class="slide" data-slide="2">
+    <span class="slide-num">02 — Problem</span>
+    <span class="slide-header">The Gap</span>
+    <h2>A generation left the land<br>because it earned <em>nothing</em></h2>
+    <ul class="points">
+      <li>Young people aged 15–30 in Georgia have access to land — and no reason to use it</li>
+      <li>Play-to-earn proved behavioral change is possible — <strong>$19B market</strong></li>
+      <li>Every version collapsed: tokens backed by nothing real</li>
+    </ul>
+    <div class="callout">
+      <p>The problem is not motivation. The problem is that the land never had a blockchain.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 3 — SOLUTION -->
+  <section class="slide" data-slide="3">
+    <span class="slide-num">03 — Solution</span>
+    <span class="slide-header">Proof of Growth</span>
+    <h2>Real plant growth as<br><em>proof of value</em> on a blockchain</h2>
+    <ul class="points">
+      <li>Grow real food → device verifies growth → blockchain records it → <strong>tokens minted</strong></li>
+      <li>No growth, no tokens — supply tied to something that cannot be inflated</li>
+      <li>First blockchain where <strong>farming is mining</strong></li>
+    </ul>
+    <div class="callout">
+      <p>Where Bitcoin asks machines to prove they expended energy — 013TRIBE asks humans to prove they grew life.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 4 — PRODUCT -->
+  <section class="slide" data-slide="4">
+    <span class="slide-num">04 — Product</span>
+    <span class="slide-header">The Device</span>
+    <h2>Grownode — the device that turns<br>growth into <em>proof</em></h2>
+    <ul class="points">
+      <li><strong>AI camera + soil sensors + GPS</strong> — multi-stream verification</li>
+      <li>Falsification practically impossible without actually growing the plant</li>
+      <li><strong>Beta:</strong> indoor growing box, no land required</li>
+      <li><strong>Phase 2:</strong> outdoor, real land, full Proof of Growth</li>
+    </ul>
+    <div class="divider"><div class="divider-dot"></div></div>
+    <div class="tech-grid">
+      <div class="tech-item">
+        <strong>Multi-Stream Verification</strong>
+        <p>Visual, soil, GPS — all streams must converge. No single point of failure or forgery.</p>
+      </div>
+      <div class="tech-item">
+        <strong>On-Chain Growth Record</strong>
+        <p>Every confirmed growth event recorded permanently on the 013TRIBE blockchain.</p>
+      </div>
+      <div class="tech-item">
+        <strong>Cryptographic Device Identity</strong>
+        <p>Each Grownode registered on chain. A fake device cannot submit valid proofs.</p>
+      </div>
+      <div class="tech-item">
+        <strong>AI Crop Analysis</strong>
+        <p>Computer vision measures green mass and crop development in real time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 5 — MARKET -->
+  <section class="slide" data-slide="5">
+    <span class="slide-num">05 — Market</span>
+    <span class="slide-header">Opportunity</span>
+    <h2>$19B behavioral model.<br><em>Unsolved</em> sustainability problem.</h2>
+    <ul class="points">
+      <li>Play-to-earn global market: <strong>$19B</strong></li>
+      <li>Georgia pilot target: <strong>500,000</strong> aged 15–30</li>
+      <li>Expansion: Eastern Europe, Central Asia, Southeast Asia — any country with rural youth migration</li>
+    </ul>
+    <table class="comparison">
+      <tr>
+        <th></th>
+        <th>Play-to-Earn (existing)</th>
+        <th>013TRIBE</th>
+      </tr>
+      <tr>
+        <td>Token backing</td>
+        <td>Nothing real</td>
+        <td>Verified food grown</td>
+      </tr>
+      <tr>
+        <td>Sustainability</td>
+        <td>Collapsed in every case</td>
+        <td>Supply tied to physical output</td>
+      </tr>
+      <tr>
+        <td>Real-world output</td>
+        <td>None</td>
+        <td>Food, soil health, land use</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- SLIDE 6 — BUSINESS MODEL -->
+  <section class="slide" data-slide="6">
+    <span class="slide-num">06 — Business Model</span>
+    <span class="slide-header">Revenue</span>
+    <h2>Hardware + <em>token economy</em></h2>
+    <ul class="points">
+      <li>Grownode device sales — one-time or lease</li>
+      <li>GMF marketplace transaction fees</li>
+      <li>Beta subscription for indoor growing box access</li>
+    </ul>
+    <div class="divider"><div class="divider-dot"></div></div>
+    <div class="tech-grid">
+      <div class="tech-item">
+        <strong>GMF Token — Grow My Food</strong>
+        <p>Minted only through verified growth. Circulates within the 013TRIBE marketplace for seeds, tools, soil.</p>
+      </div>
+      <div class="tech-item">
+        <strong>Living iNFT Plot</strong>
+        <p>Each player's land represented as a dynamic NFT — evolving in real time as crops grow.</p>
+      </div>
+      <div class="tech-item">
+        <strong>Community Treasury</strong>
+        <p>Portion of all marketplace transactions sustains the liquidity pool and ongoing development.</p>
+      </div>
+      <div class="tech-item">
+        <strong>DEX Listing</strong>
+        <p>GMF listed on decentralized exchanges via bridge. Liquidity fund established at launch.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 7 — TRACTION -->
+  <section class="slide" data-slide="7">
+    <span class="slide-num">07 — Traction</span>
+    <span class="slide-header">Validation</span>
+    <h2>Concept validated.<br>Architecture confirmed.<br><em>Building begins.</em></h2>
+    <ul class="points">
+      <li>Whitepaper published and timestamped — <strong>Archive.org</strong></li>
+      <li>ENS domain <strong>013tribe.dao</strong> live</li>
+      <li>Technical co-founder: embedded systems engineer confirmed architecture is sound</li>
+      <li>Enrolled: <strong>Founder Institute Georgia CEE Spring 2026</strong></li>
+      <li>Applying: <strong>500 Global Georgia Startup Academy</strong></li>
+    </ul>
+  </section>
+
+  <!-- SLIDE 8 — COMPETITION -->
+  <section class="slide" data-slide="8">
+    <span class="slide-num">08 — Competition</span>
+    <span class="slide-header">Positioning</span>
+    <h2>No one combines physical verification<br>with <em>blockchain earning</em></h2>
+    <table class="comparison">
+      <tr>
+        <th></th>
+        <th>What they proved</th>
+        <th>What they missed</th>
+      </tr>
+      <tr>
+        <td>StepN / Axie Infinity</td>
+        <td>Behavioral model — it works</td>
+        <td>Token sustainability failed — nothing real behind it</td>
+      </tr>
+      <tr>
+        <td>AgroToken / Harvest Finance</td>
+        <td>Agricultural blockchain</td>
+        <td>No game layer, no behavioral engine</td>
+      </tr>
+      <tr>
+        <td>013TRIBE</td>
+        <td colspan="2" style="color:#c0185a;font-style:italic;">Physical proof of work + game layer + token backed by food</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- SLIDE 9 — TEAM -->
+  <section class="slide" data-slide="9">
+    <span class="slide-num">09 — Team</span>
+    <span class="slide-header">Who We Are</span>
+    <h2>Built from the inside<br>of the <em>problem</em></h2>
+    <div class="team-grid">
+      <div class="team-member">
+        <span class="name">Sophia Abramiשvili</span>
+        <span class="role">Founder</span>
+        <p>Researcher of human motivation. Banking and bio food retail background. Cultural insider to the Georgian rural-urban shift.</p>
+      </div>
+      <div class="team-member">
+        <span class="name">Technical Co-Founder</span>
+        <span class="role">Electronics & Embedded Systems</span>
+        <p>Reviewed architecture, confirmed feasibility. Commits at funding stage.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 10 — ASK -->
+  <section class="slide" data-slide="10">
+    <span class="slide-num">10 — Ask</span>
+    <span class="slide-header">The Raise</span>
+    <h2>Pre-seed to build the prototype<br>and run <em>beta</em></h2>
+    <div class="ask-grid">
+      <div class="ask-item">
+        <span class="ask-label">Building</span>
+        <p>First Grownode prototype + indoor beta launch in Tbilisi</p>
+      </div>
+      <div class="ask-item">
+        <span class="ask-label">Seeking</span>
+        <p>Pre-seed investment + technical co-founder</p>
+      </div>
+      <div class="ask-item">
+        <span class="ask-label">Next Milestone</span>
+        <p>Working device, first pioneer players, first GMF tokens minted</p>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:44px;">
+      <p>I planted this seed. I release it openly. Let it grow.</p>
+    </div>
+  </section>
+
+</div><!-- /deck -->
+
+<footer>
+  <div class="footer-tagline">013TRIBE · GROW FOOD · EARN TOKENS · CREATE REALITY</div>
+  <a href="mailto:sophiaabramishvili@gmail.com" class="contact">sophiaabramishvili@gmail.com</a>
+</footer>
+
+<script>
+// Sun rays
+const g = document.getElementById('sungroup');
+for(let i = 0; i < 72; i++){
+  const angle = (i / 72) * Math.PI * 2;
+  const outerR = 88 + Math.random() * 10;
+  const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+  line.setAttribute('x1', Math.cos(angle)*44);
+  line.setAttribute('y1', Math.sin(angle)*44);
+  line.setAttribute('x2', Math.cos(angle)*outerR);
+  line.setAttribute('y2', Math.sin(angle)*outerR);
+  line.setAttribute('stroke','#c0185a');
+  line.setAttribute('stroke-width','0.8');
+  line.setAttribute('opacity','0.5');
+  g.insertBefore(line, g.firstChild);
+}
+
+// Nav dots
+const slides = document.querySelectorAll('.slide');
+const navDots = document.getElementById('navDots');
+slides.forEach((slide, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'nav-dot';
+  btn.title = `Slide ${i+1}`;
+  btn.onclick = () => slide.scrollIntoView({ behavior: 'smooth' });
+  navDots.appendChild(btn);
+});
+
+// Intersection observer — reveal + active dot
+const dotBtns = navDots.querySelectorAll('.nav-dot');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const idx = Array.from(slides).indexOf(entry.target);
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      dotBtns.forEach(d => d.classList.remove('active'));
+      if(dotBtns[idx]) dotBtns[idx].classList.add('active');
+    }
+  });
+}, { threshold: 0.3 });
+slides.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
